@@ -1,0 +1,137 @@
+server:
+  port: 8084
+
+spring:
+  profiles:
+    active: dev
+    include: website #,alipay,oss
+  cache:
+    ehcache:
+      config: classpath:ehcache.xml
+  thymeleaf:
+    mode: LEGACYHTML5 #去除thymeleaf的html严格校验thymeleaf.mode=LEGACYHTML5
+    cache: false # 是否开启模板缓存，默认true,建议在开发时关闭缓存,不然没法看到实时
+  # 将所有数字转为 String 类型返回，避免前端数据精度丢失的问题
+  jackson:
+    generator:
+      write-numbers-as-strings: true
+  #上传文件的最大值（100M）
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  main:
+    allow-bean-definition-overriding: true
+  #Redis服务器IP
+  redis:
+    host: r-2zelycye61jw800hwrpd.redis.rds.aliyuncs.com
+    #Redis服务器连接端口
+    port: 6379
+    #Redis服务器连接密码
+    password: 19951110Lsy
+    jedis:
+      pool:
+        #连接池最大连接数（使用负值表示没有限制）
+        max-active: 8
+        #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: 1
+        #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-idle: 8
+        #连接池中的最小空闲连接
+        min-idle: 0
+    #连接超时时间（毫秒）
+    timeout: 30000
+  datasource:
+    url: jdbc:mysql://rm-2ze1t868t9p8f7k39mo.mysql.rds.aliyuncs.com:3306/novel_plus?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: admin_lsy
+    password: 19951110Lsy
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  configuration:
+    #自动将数据库带下划线的表字段值映射到Java类的驼峰字段上
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath*:mybatis/mapping/*.xml
+  type-aliases-package: com.novel.entities
+
+logging:
+  config: classpath:logback-boot.xml
+  level:
+    root: error
+    com.java2nb: error
+
+jwt:
+  secret: novel!#20191230
+  expiration: 604800
+
+#缓存管理密码
+cache:
+  manager:
+    password: novel@2020117
+
+content:
+  save:
+    storage: db #存储介质，db：数据库，file：txt文本
+    path: ./books  #txt小说文本保存路径
+
+# HTTP 代理配置
+http:
+  proxy:
+    # 是否开启 HTTP 代理，true-开启，false-不开启
+    enabled: false
+    # 代理 IP
+    ip: 40.83.102.86
+    # 代理端口号
+    port: 80
+
+# 防止XSS攻击
+xss:
+  # 过滤开关
+  enabled: true
+  # 排除链接（多个用逗号分隔）
+  excludes: /system/notice/*
+  # 匹配链接 （多个用逗号分隔）
+  urlPatterns: /book/addBookComment,/user/addFeedBack,/author/addBook,/author/addBookContent,/author/updateBookContent,/author/register.html
+
+author:
+  income:
+    #税率(扣税后所得比率)
+    tax-rate: 0.9
+    #分佣比例
+    share-proportion: 0.7
+    #兑换比率(人民币)
+    exchange-proportion: 0.01
+
+#小说章节定价规则
+book:
+  price:
+    #字数
+    word-count: 1000
+    #价值(屋币)
+    value: 5
+
+pic:
+  save:
+    type: 1 #图片保存方式, 1不保存，使用爬取的网络图片 ，2保存在自己的存储介质
+    storage: local #存储介质，local：本地，OSS：阿里云对象存储
+    path: ./pic  #图片保存路径
+
+#线程池配置
+thread:
+  pool:
+    #核心线程池数量
+    core-pool-size: 10
+    #最大线程池数量
+    maximum-pool-size: 20
+    #线程超时时间（秒）
+    keep-alive-time: 10
+    #队列大小
+    queue-size: 100
+
+
+
+
+
+
+
+
