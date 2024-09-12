@@ -90,7 +90,8 @@ public class BookServiceImpl implements BookService {
     @SneakyThrows
     @Override
     public Map<Byte, List<BookSettingVO>> listBookSettingVO() {
-        String result = cacheService.get(CacheKey.INDEX_BOOK_SETTINGS_KEY);
+//        String result = cacheService.get(CacheKey.INDEX_BOOK_SETTINGS_KEY);
+        String result = null;
         if (result == null || result.length() < Constants.OBJECT_JSON_CACHE_EXIST_LENGTH) {
             List<BookSettingVO> list = bookSettingMapper.listVO();
             if (CollectionUtils.isEmpty(list)) {

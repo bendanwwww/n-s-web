@@ -22,30 +22,7 @@ spring:
       max-request-size: 100MB
   main:
     allow-bean-definition-overriding: true
-  #Redis服务器IP
-  redis:
-    host: r-2zelycye61jw800hwrpd.redis.rds.aliyuncs.com
-    #Redis服务器连接端口
-    port: 6379
-    #Redis服务器连接密码
-    password: 19951110Lsy
-    jedis:
-      pool:
-        #连接池最大连接数（使用负值表示没有限制）
-        max-active: 8
-        #连接池最大阻塞等待时间（使用负值表示没有限制）
-        max-wait: 1
-        #连接池最大阻塞等待时间（使用负值表示没有限制）
-        max-idle: 8
-        #连接池中的最小空闲连接
-        min-idle: 0
-    #连接超时时间（毫秒）
-    timeout: 30000
-  datasource:
-    url: jdbc:mysql://rm-2ze1t868t9p8f7k39mo.mysql.rds.aliyuncs.com:3306/novel_plus?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
-    username: admin_lsy
-    password: 19951110Lsy
-    driver-class-name: com.mysql.cj.jdbc.Driver
+
 
 mybatis:
   configuration:
